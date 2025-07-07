@@ -1,0 +1,10 @@
+# Flutter build files
+build/
+**/build/
+*.apk
+*.aab
+*.ipa
+*.so
+*.bin
+*.lock
+*.iml
