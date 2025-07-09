@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:my_todo/core/utils/ui_helpers.dart';
 import 'package:my_todo/domain/entities/todo_entity.dart';
 import 'package:my_todo/domain/interfaces/firebase_rtdb.dart';
 import 'package:my_todo/injcetion/locator.dart';
@@ -7,15 +10,16 @@ import '../../widget/todo_item_title.dart';
 
 class Cloud extends StatelessWidget {
   Cloud({super.key});
+  final userId = FirebaseAuth.instance.currentUser?.uid;
 
   final _rtdb = locator<FirebaseRealTimeDataBase>();
-
   @override
   Widget build(BuildContext context) {
+    debugPrint("${userId} userId");
     return Scaffold(
       appBar: AppBar(title: Text("Cloud")),
       body: StreamBuilder<List<Todo>>(
-        stream: _rtdb.getTodosStream(),
+        stream: _rtdb.getTodosStream(userId: userId??""),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -43,7 +47,12 @@ class Cloud extends StatelessWidget {
                       title: 'Title ${item.title ?? ''}',
                       time: "start ${item.startTime}",
                       onEdit: () {},
-                      onDelete: () {},
+                      onDelete: () async{
+                        deleteTodoDialog(id: item.id, context: context, onTap: ()async{
+                          _rtdb.deleteTodo(item.id);
+                        //  context.pop();
+                        });
+                      },
                     ),
                   );
                 }

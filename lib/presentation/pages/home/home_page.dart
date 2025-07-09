@@ -46,7 +46,6 @@ class _HomePageState extends State<HomePage> {
   Future<void> delete(String id) async {
     try {
       await todoService.deleteTodo(id);
-
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -202,7 +201,6 @@ class _HomePageState extends State<HomePage> {
                                         context: context,
                                         onTap: () async {
                                           await delete(item.id);
-                                          context.pop();
                                         },
                                       );
 

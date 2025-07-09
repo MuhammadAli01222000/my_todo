@@ -2,8 +2,6 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get_it/get_it.dart';
 import 'package:my_todo/core/services/auth_service_impl.dart';
 import 'package:my_todo/core/services/hive_service_impl.dart';
-
-import '../core/services/cloud_service.dart';
 import '../core/services/local_notification_services_impl.dart';
 import '../core/services/rtdb_service.dart';
 import '../core/services/voice_service_impl.dart';
@@ -19,7 +17,6 @@ void setUpLocator(){
   locator.registerLazySingleton<ITodoService>(()=>TodoService());
   locator.registerLazySingleton<ILocalNotificationService>(() => LocalNotificationService());
   locator.registerLazySingleton<VoiceServiceImpl>(() => VoiceServiceImpl());
-  locator.registerLazySingleton<CloudRepository>(() => CloudServiceImpl());
   locator.registerLazySingleton<FirebaseRealTimeDataBase>(() => FirebaseRealTimeDatabaseImpl());
 
 }

@@ -21,6 +21,7 @@ Future<void> deleteTodoDialog({
           TextButton(
             onPressed: () async {
               await onTap();
+              if (context.mounted) context.pop();
             },
             child: Text("${AppLocalizations.of(context)?.yes}",style: TextStyle(color: Colors.red)),
           ),

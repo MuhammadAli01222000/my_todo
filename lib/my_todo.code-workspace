@@ -1,0 +1,23 @@
+{
+	"folders": [
+		{
+			"path": "../../my_todo"
+		},
+		{
+			"path": "../android"
+		},
+		{
+			"path": "../assets"
+		},
+		{
+			"path": "../ios"
+		},
+		{
+			"path": "."
+		},
+		{
+			"path": "../test"
+		}
+	],
+	"settings": {}
+}
