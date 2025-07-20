@@ -8,6 +8,7 @@
   "inputError": "Please enter a valid login and email",
   "userName": "User Name",
   "password": "Password",
+  "reconfirmPassword":"Reconfirm password",
   "login": "Login",
   "signInWidthGoogle": "Sign In With Google",
   "dontHaveAccount": "Don't have an account?",

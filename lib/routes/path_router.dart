@@ -1,6 +1,6 @@
-sealed class AppRouteName{
+sealed class AppRouteName {
   static const String home = 'home';
-  static const String login = 'login';
+  static const String signIn = 'signIn';
   static const String register = 'register';
   static const String profile = 'profile';
   static const String signUp = 'signUp';
@@ -8,14 +8,13 @@ sealed class AppRouteName{
   static const String edit = 'edit';
   static const String settings = 'settings';
   static const String voiceRecorder = 'voiceRecorder';
-  static const  String splash="splash";
+  static const String splash = "splash";
   static const String cloud = 'cloud';
-
 }
 
-sealed class AppRoutePath{
+sealed class AppRoutePath {
   static const String home = '/home';
-  static const String login = '/login';
+  static const String signIn = '/signIn';
   static const String signUp = '/signUp';
   static const String register = '/register';
   static const String edit = '/edit';
@@ -26,5 +25,5 @@ sealed class AppRoutePath{
   static const String settings = '/settings';
   static const String voiceRecorder = '/voiceRecorder';
 
-  static const  String splash="/";
+  static const String splash = "/";
 }

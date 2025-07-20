@@ -33,6 +33,9 @@ class AppLocalizationsUz extends AppLocalizations {
   String get password => 'Parol';
 
   @override
+  String get reconfirmPassword => 'Parolni qayta tasdiqlang';
+
+  @override
   String get login => 'Kirish';
 
   @override

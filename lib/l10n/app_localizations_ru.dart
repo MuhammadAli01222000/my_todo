@@ -34,6 +34,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get password => 'Пароль';
 
   @override
+  String get reconfirmPassword => 'Подтвердите пароль';
+
+  @override
   String get login => 'Войти';
 
   @override

@@ -31,8 +31,8 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   void _logout() {
-AuthService authService=AuthService();
-authService.signOut();
+    AuthService authService = AuthService();
+    authService.signOut();
     print("🚪 Logout clicked");
   }
 
@@ -57,7 +57,9 @@ authService.signOut();
 
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(onPressed: ()=>context.pushNamed(AppRouteName.home),),
+        leading: BackButton(
+          onPressed: () => context.pushNamed(AppRouteName.home),
+        ),
         title: Text('settings'),
         centerTitle: true,
       ),
@@ -68,6 +70,7 @@ authService.signOut();
             trailing: DropdownButton<String>(
               value: _selectedLang,
               underline: const SizedBox(),
+
               /// Localization metod
               onChanged: (val) {
                 if (val != null) _changeLanguage(val);
@@ -85,7 +88,7 @@ authService.signOut();
 
           ListTile(
             leading: const Icon(Icons.info_outline),
-            title: Text( 'Dastur haqida'),
+            title: Text('Dastur haqida'),
             onTap: _showAboutDialog,
           ),
           const Divider(),
@@ -93,13 +96,13 @@ authService.signOut();
           ListTile(
             leading: const Icon(Icons.feedback_outlined),
             title: Text('Taklif va shikoyatlar'),
-            onTap: () => _showNotImplemented( 'Taklif'),
+            onTap: () => _showNotImplemented('Taklif'),
           ),
           const Divider(),
 
           ListTile(
             leading: const Icon(Icons.favorite_border),
-            title: Text( 'Donat qilish'),
+            title: Text('Donat qilish'),
             onTap: () => ('Donat'),
           ),
           const Divider(),
@@ -107,17 +110,17 @@ authService.signOut();
           ListTile(
             leading: const Icon(Icons.help_outline),
             title: Text('Ko‘p so‘raladigan savollar (FAQ)'),
-            onTap: () => _showNotImplemented( 'FAQ'),
+            onTap: () => _showNotImplemented('FAQ'),
           ),
           const Divider(),
 
           ListTile(
             leading: const Icon(Icons.logout),
-            title: Text( 'Chiqish'),
+            title: Text('Chiqish'),
             onTap: () async {
               await AuthService().signOut();
               if (context.mounted) {
-                context.goNamed(AppRouteName.login);
+                context.goNamed(AppRouteName.signIn);
               }
             },
           ),

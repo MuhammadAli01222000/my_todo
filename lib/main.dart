@@ -1,4 +1,7 @@
+import 'dart:ui';
+
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -15,21 +18,22 @@ import 'injcetion/locator.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  setUpLocator();
-  final notificationService = locator<ILocalNotificationService>();
-
-  // Firebase
   await Firebase.initializeApp();
 
-  WidgetsFlutterBinding.ensureInitialized();
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+  PlatformDispatcher.instance.onError = (error, stack) {
+    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+    return true;
+  };
 
-  // Hive init
+  setUpLocator();
+
+  final notificationService = locator<ILocalNotificationService>();
+
   final dir = await getApplicationDocumentsDirectory();
   await Hive.initFlutter(dir.path);
-
   Hive.registerAdapter(TodoAdapter());
   await Hive.openBox<Todo>('todos');
-
   await Hive.openBox<LocalUser>('user');
 
   await SystemChrome.setPreferredOrientations([

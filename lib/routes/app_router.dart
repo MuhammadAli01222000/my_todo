@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_todo/presentation/pages/auth/sign_in.dart';
+import 'package:my_todo/presentation/pages/auth/sign_up.dart';
 import 'package:my_todo/presentation/pages/cloud/cloud.dart';
 import 'package:my_todo/presentation/pages/edit_task/edit_task.dart';
 import 'package:my_todo/presentation/pages/home/home_page.dart';
@@ -15,17 +16,17 @@ import '../presentation/pages/create_task/create_task.dart';
 import 'path_router.dart';
 
 final GoRouter router = GoRouter(
-  initialLocation: AppRoutePath.splash,
+  initialLocation: AppRoutePath.signUp,
   redirect: (context, state) async {
     final bool isLoggedIn = await AuthService.checkLoginStatus();
     final String location = state.fullPath ?? '';
 
-
-    final bool isOnAuthPage = location == AppRoutePath.signUp || location == AppRoutePath.login;
+    final bool isOnAuthPage =
+        location == AppRoutePath.signUp || location == AppRoutePath.signIn;
     final bool isOnSplash = location == AppRoutePath.splash;
 
     if (!isLoggedIn && !isOnAuthPage && !isOnSplash) {
-      return AppRoutePath.login;
+      return AppRoutePath.signIn;
     }
 
     if (isLoggedIn && isOnAuthPage) {
@@ -48,11 +49,12 @@ final GoRouter router = GoRouter(
         child: const CreateTask(),
       ),
     ),
+
     /// sign Up
     GoRoute(
       path: AppRoutePath.signUp,
       name: AppRouteName.signUp,
-      builder: (context, state) => const SignInPage(),
+      builder: (context, state) => const RegisterPage(),
     ),
     GoRoute(
       path: AppRoutePath.voiceRecorder,
@@ -68,8 +70,8 @@ final GoRouter router = GoRouter(
       },
     ),
     GoRoute(
-      path: AppRoutePath.login,
-      name: AppRouteName.login,
+      path: AppRoutePath.signIn,
+      name: AppRouteName.signIn,
       builder: (context, state) => const SignInPage(),
     ),
     GoRoute(
@@ -82,14 +84,19 @@ final GoRouter router = GoRouter(
       name: AppRouteName.home,
       builder: (context, state) => const HomePage(),
     ),
+
     /// cloud
     GoRoute(
       path: AppRoutePath.cloud,
       name: AppRouteName.cloud,
-      builder: (context, state) =>  Cloud(),
+      builder: (context, state) => Cloud(),
     ),
 
     /// setting
-    GoRoute(path: AppRoutePath.settings,name: AppRouteName.settings,builder: (context,state)=>const  SettingsPage()),
+    GoRoute(
+      path: AppRoutePath.settings,
+      name: AppRouteName.settings,
+      builder: (context, state) => const SettingsPage(),
+    ),
   ],
 );

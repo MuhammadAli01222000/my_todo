@@ -148,6 +148,12 @@ abstract class AppLocalizations {
   /// **'Password'**
   String get password;
 
+  /// No description provided for @reconfirmPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Reconfirm password'**
+  String get reconfirmPassword;
+
   /// No description provided for @login.
   ///
   /// In en, this message translates to:

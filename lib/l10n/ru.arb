@@ -8,6 +8,7 @@
   "inputError": "Пожалуйста, введите корректные логин и электронную почту",
   "userName": "Имя пользователя",
   "password": "Пароль",
+  "reconfirmPassword":"Подтвердите пароль",
   "login": "Войти",
   "signInWidthGoogle": "Войти через Google",
   "dontHaveAccount": "Нет аккаунта?",

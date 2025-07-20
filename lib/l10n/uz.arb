@@ -43,6 +43,7 @@
   "loginUnknownError": "Xatolik yuz berdi. Iltimos, qayta urinib ko‘ring.",
   "loginUserNotFound": "Bunday foydalanuvchi topilmadi",
   "loginWrongPassword": "Noto‘g‘ri parol",
+  "reconfirmPassword":"Parolni qayta tasdiqlang",
   "loginInvalidEmail": "Noto‘g‘ri email format",
   "loginUserDisabled": "Foydalanuvchi hisobi o‘chirilgan",
   "loginTooManyRequests": "Juda ko‘p urinish. Biroz kutib qayta urinib ko‘ring",

@@ -17,6 +17,7 @@ class SplashPage extends StatefulWidget {
   @override
   State<SplashPage> createState() => _SplashPageState();
 }
+
 // ok hammasi
 class _SplashPageState extends State<SplashPage> {
   @override
@@ -39,11 +40,11 @@ class _SplashPageState extends State<SplashPage> {
       if (isLoggedIn) {
         context.goNamed(AppRouteName.home);
       } else {
-        context.goNamed(AppRouteName.login);
+        context.goNamed(AppRouteName.signIn);
       }
     } catch (e) {
       print('❌ Splash: Error checking auth status: $e');
-      context.goNamed(AppRouteName.login);
+      context.goNamed(AppRouteName.signIn);
     }
   }
 
@@ -60,18 +61,19 @@ class _SplashPageState extends State<SplashPage> {
             Center(child: AppIcons.todoHive),
             AppDimens.h16,
 
-            Text("${AppLocalizations.of(context)?.splashScreenText}",style: AppTextStyle.splashText),
+            Text(
+              "${AppLocalizations.of(context)?.splashScreenText}",
+              style: AppTextStyle.splashText,
+            ),
             AppDimens.h16,
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 100),
               child: OutlinedButton(
                 onPressed: () {
-                  context.goNamed(AppRouteName.login);
+                  context.goNamed(AppRouteName.signIn);
                 },
                 style: OutlinedButton.styleFrom(
-                  side: const BorderSide(
-                    style: BorderStyle.solid,
-                  ),
+                  side: const BorderSide(style: BorderStyle.solid),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -79,8 +81,11 @@ class _SplashPageState extends State<SplashPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
-                  children:  [
-                    Text("${AppLocalizations.of(context)?.getStarted}" ,style: AppTextStyle.splashText,),
+                  children: [
+                    Text(
+                      "${AppLocalizations.of(context)?.getStarted}",
+                      style: AppTextStyle.splashText,
+                    ),
                     SizedBox(width: 8),
                     AppIcons.arrowRight,
                   ],

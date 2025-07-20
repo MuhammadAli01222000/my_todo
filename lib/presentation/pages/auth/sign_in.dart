@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_todo/core/constants/app_colors.dart';
+import 'package:my_todo/core/constants/app_dimens.dart';
 import 'package:my_todo/core/constants/app_icons.dart';
 import 'package:my_todo/presentation/pages/auth/sign_up.dart';
 import 'package:my_todo/presentation/widget/backround_color.dart';
@@ -105,10 +106,7 @@ class _SignInPageState extends State<SignInPage> {
   void _showSnackBar(String message) {
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(message),
-          backgroundColor: Colors.red,
-        ),
+        SnackBar(content: Text(message), backgroundColor: Colors.red),
       );
     }
   }
@@ -118,27 +116,16 @@ class _SignInPageState extends State<SignInPage> {
     final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
-      body: Stack(
-        children: [
-          const BackgroundColors(),
-          Positioned(left: 3, top: 5, child: AppIcons.pattern1),
-          Positioned(left: 30, top: 40, child: AppIcons.todoHive),
-          Positioned(
-            left: 80,
-            top: 270,
-            child: Text(
-              l10n.welcomeBack,
-              style: TextStyle(
-                color: AppColors.black,
-                fontWeight: FontWeight.w700,
-                fontSize: 30,
-              ),
-            ),
-          ),
-          Positioned(
-            left: 60,
-            top: 330,
-            child: Container(
+      body: BackgroundColors(
+        child: Column(
+          children: [
+            Align(alignment: Alignment.topLeft, child: AppIcons.pattern1),
+            Align(alignment: Alignment.topCenter, child: AppIcons.todoHive),
+            Spacer(),
+            Text("Login", style: TextStyle(color: Colors.black, fontSize: 50)),
+            Spacer(),
+
+            Container(
               width: 284,
               height: 350,
               color: Colors.transparent,
@@ -157,16 +144,13 @@ class _SignInPageState extends State<SignInPage> {
                     obscureText: true,
                   ),
                   const SizedBox(height: 8),
-                  LoginButton(
-                    onTap: _login,
-                    text: l10n.login,
-                  ),
+                  LoginButton(onTap: _login, text: l10n.login),
                   const SizedBox(height: 8),
                   GoogleButton(onTap: () {}),
                   const SizedBox(height: 8),
                   TextButton(
                     onPressed: () {
-                   context.goNamed(AppRouteName.register);
+                      context.goNamed(AppRouteName.signUp);
                     },
                     child: Text.rich(
                       TextSpan(
@@ -193,14 +177,10 @@ class _SignInPageState extends State<SignInPage> {
                 ],
               ),
             ),
-          ),
-          Positioned(right: 3, bottom: 2, child: AppIcons.pattern2),
-          if (_isLoading)
-            Container(
-              color: Colors.black26,
-              child: const Center(child: CircularProgressIndicator()),
-            ),
-        ],
+            SizedBox(height: 20),
+            Align(alignment: Alignment.bottomRight, child: AppIcons.pattern2),
+          ],
+        ),
       ),
     );
   }
