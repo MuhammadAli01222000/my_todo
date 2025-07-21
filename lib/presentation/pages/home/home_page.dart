@@ -172,8 +172,7 @@ class _HomePageState extends State<HomePage> {
                             child: Padding(
                               padding: const EdgeInsets.all(20.0),
                               child: Text(
-                                "empty",
-                                //'${AppLocalizations.of(context)?.crateNewTask}',
+                                '${AppLocalizations.of(context)?.crateNewTask}',
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.grey[600],
@@ -203,8 +202,6 @@ class _HomePageState extends State<HomePage> {
                                           await delete(item.id);
                                         },
                                       );
-
-                                      //   await     delete(item.id);
                                     },
                                   ),
                                 ),
@@ -227,7 +224,7 @@ class _HomePageState extends State<HomePage> {
         setState(() {
           _currentIndex = index;
         });
-        if (index != 0 ) {
+        if (index != 0) {
           context.goNamed(AppRouteName.home);
         }
         if (index == 1) {
@@ -244,10 +241,9 @@ class _HomePageState extends State<HomePage> {
         ),
         BottomNavigationBarItem(icon: Icon(Icons.settings), label: ""),
         BottomNavigationBarItem(
-          icon:Icon(Icons.cloud_download_outlined,color: Colors.blue,),
+          icon: Icon(Icons.cloud_download_outlined, color: Colors.blue),
           label: "",
         ),
-
       ],
     );
   }

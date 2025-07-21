@@ -84,6 +84,7 @@ sealed class AppIcons {
     width: 70,
     height: 70,
   );
+  static final sound = Icons.volume_up_outlined;
 
   /// image user
   static final user = Image.asset(
