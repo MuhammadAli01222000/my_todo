@@ -183,26 +183,34 @@ class _HomePageState extends State<HomePage> {
                         : Column(
                             children: [
                               for (final item in todoList)
-                                Padding(
-                                  padding: const EdgeInsets.only(bottom: 10),
-                                  child: TodoItemTile(
-                                    title: 'Title ${item.title ?? ''}',
-                                    time: _formatTime(item),
-                                    onEdit: () async {
-                                      final result = await context.pushNamed(
-                                        AppRouteName.edit,
-                                        extra: item,
-                                      );
-                                    },
-                                    onDelete: () async {
-                                      await deleteTodoDialog(
-                                        id: '${item.id}',
-                                        context: context,
-                                        onTap: () async {
-                                          await delete(item.id);
-                                        },
-                                      );
-                                    },
+                                GestureDetector(
+                                  onTap: () {
+                                    context.pushNamed(
+                                      AppRouteName.note,
+                                      extra: item,
+                                    );
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(bottom: 10),
+                                    child: TodoItemTile(
+                                      title: 'Title ${item.title ?? ''}',
+                                      time: _formatTime(item),
+                                      onEdit: () async {
+                                        final result = await context.pushNamed(
+                                          AppRouteName.edit,
+                                          extra: item,
+                                        );
+                                      },
+                                      onDelete: () async {
+                                        await deleteTodoDialog(
+                                          id: '${item.id}',
+                                          context: context,
+                                          onTap: () async {
+                                            await delete(item.id);
+                                          },
+                                        );
+                                      },
+                                    ),
                                   ),
                                 ),
                             ],

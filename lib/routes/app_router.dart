@@ -7,6 +7,7 @@ import 'package:my_todo/presentation/pages/cloud/cloud.dart';
 import 'package:my_todo/presentation/pages/edit_task/edit_task.dart';
 import 'package:my_todo/presentation/pages/home/home_page.dart';
 import 'package:my_todo/core/services/auth_service_impl.dart';
+import 'package:my_todo/presentation/pages/notes/notes.dart';
 import 'package:my_todo/presentation/pages/settings/settings_page.dart';
 import 'package:my_todo/presentation/pages/splash/splash_page.dart';
 import 'package:my_todo/presentation/pages/voice_recorder/voice_todo.dart';
@@ -48,6 +49,16 @@ final GoRouter router = GoRouter(
         create: (_) => CloudSwitchButtonCubit(),
         child: const CreateTask(),
       ),
+    ),
+
+    /// todo
+    GoRoute(
+      path: AppRoutePath.note,
+      name: AppRouteName.note,
+      builder: (context, state) {
+        final Todo todo = state.extra as Todo;
+        return Notes(todo: todo);
+      },
     ),
 
     /// sign Up
